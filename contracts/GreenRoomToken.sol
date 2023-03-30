@@ -4,14 +4,16 @@ pragma solidity 0.8.19;
 
 import "erc721a/contracts/extensions/ERC721ABurnable.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
-import "@openzeppelin/contracts/security/Pausable.sol";
 
-contract GreenRoomToken is ERC721A, ERC721ABurnable, Ownable, Pausable {
+contract GreenRoomToken is ERC721A, ERC721ABurnable, Ownable {
 
-    uint96 public mintValue = 0.1 ether;
+    uint96 public mintValue;
+    bool private paused = true;
+    
+    /// @dev Uri of metada. Set after deploy. 
+    string private uri;
 
     constructor(string memory name_, string memory symbol_) ERC721A(name_, symbol_) {
-        _pause();
     }
 
     function exists(uint256 tokenId) public view returns (bool) {
@@ -22,8 +24,9 @@ contract GreenRoomToken is ERC721A, ERC721ABurnable, Ownable, Pausable {
         _safeMint(msg.sender, quantity);
     }
 
-    function mint(uint256 quantity) whenNotPaused payable external {
-        require(msg.value >= mintValue * quantity);
+    function mint(uint256 quantity) payable external {
+        require(!paused, "It is paused");
+        require(msg.value >= mintValue * quantity, "Not enough funds");
         _safeMint(msg.sender, quantity);
     }
 
@@ -33,11 +36,11 @@ contract GreenRoomToken is ERC721A, ERC721ABurnable, Ownable, Pausable {
     }
 
     function setPause() onlyOwner external {
-        _pause();
+        paused = true;
     }
 
     function setUnpause() onlyOwner external {
-        _unpause();
+        paused = false;
     }
 
     function setMintValue(uint96 _value) onlyOwner external {
@@ -62,5 +65,15 @@ contract GreenRoomToken is ERC721A, ERC721ABurnable, Ownable, Pausable {
 
     function contractBalance() external view returns (uint256) {
         return address(this).balance;
+    }
+
+    /// @dev Set base uri. OnlyOwner can call it.
+    function setBaseURI(string memory _value) external onlyOwner {
+        uri = _value;
+    }
+
+    /// @dev Returns base uri
+    function _baseURI() internal view virtual override returns (string memory) {
+        return uri;
     }
 }
