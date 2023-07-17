@@ -90,7 +90,7 @@
                           href="https://opensea.io/assets/matic/0x5c4494a9f0b54da903c8ec50ac1c94bebe698fa0/7"
                           target="_blank"
                         >
-                          <span>Token 1</span>
+                          <span>Token 7</span>
                           <span class="ml-2"
                             >0x020ec7292b5966debaf3362aed5ff65db4e70348f3d6d6d30c79301ae39e00fd</span
                           >
@@ -104,6 +104,28 @@
                           <span>Token 2</span>
                           <span class="ml-2"
                             >0x8bf32fc50cc0702d29955282d6f110efe900de0fb23dad65fd97201d440e20f5</span
+                          >
+                        </a>
+                      </li>
+                      <li>
+                        <a
+                          href="https://opensea.io/assets/matic/0x5c4494a9f0b54da903c8ec50ac1c94bebe698fa0/1"
+                          target="_blank"
+                        >
+                          <span>Token 1</span>
+                          <span class="ml-2"
+                            >0xec57040b168445de8391853f5017cd8ec5637c8facd476afdadd184c5e428fab</span
+                          >
+                        </a>
+                      </li>
+                      <li>
+                        <a
+                          href="https://opensea.io/assets/matic/0x5c4494a9f0b54da903c8ec50ac1c94bebe698fa0/3"
+                          target="_blank"
+                        >
+                          <span>Token 3</span>
+                          <span class="ml-2"
+                            >0x197235ef8273b79d5471c2f385024dd61678d82349bf833cfb0ea8f6058fccee</span
                           >
                         </a>
                       </li>
@@ -487,6 +509,22 @@
               searchResult.href = `https://opensea.io/assets/matic/0x5c4494a9f0b54da903c8ec50ac1c94bebe698fa0/1`;
               searchResult.innerHTML =
                 'https://opensea.io/assets/matic/0x5c4494a9f0b54da903c8ec50ac1c94bebe698fa0/1';
+            }
+            else if (
+              `${hashedPhoneNumber}` === '0xec57040b168445de8391853f5017cd8ec5637c8facd476afdadd184c5e428fab'
+            ) {
+              const searchResult = document.getElementById('searchResult');
+              searchResult.href = `https://opensea.io/assets/matic/0x5c4494a9f0b54da903c8ec50ac1c94bebe698fa0/2`;
+              searchResult.innerHTML =
+                'https://opensea.io/assets/matic/0x5c4494a9f0b54da903c8ec50ac1c94bebe698fa0/2';
+            }
+            else if (
+              `${hashedPhoneNumber}` === '0x197235ef8273b79d5471c2f385024dd61678d82349bf833cfb0ea8f6058fccee'
+            ) {
+              const searchResult = document.getElementById('searchResult');
+              searchResult.href = `https://opensea.io/assets/matic/0x5c4494a9f0b54da903c8ec50ac1c94bebe698fa0/3`;
+              searchResult.innerHTML =
+                'https://opensea.io/assets/matic/0x5c4494a9f0b54da903c8ec50ac1c94bebe698fa0/3';
             }
           }
         });
